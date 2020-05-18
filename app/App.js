@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import { Button, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import getList from './src/views/PlanList.js';
 import { useQuery } from 'react-query';
 import { getPlans, getPlanExercises } from './src/routes.js';
+import { styles } from './src/styles.js';
 
 function HomeScreen({ route, navigation }) {
   const {first} = route.params;
@@ -22,13 +23,16 @@ function HomeScreen({ route, navigation }) {
 // what we want for PLANS
 function DetailsScreen({ route, navigation }) {
   const {thing} = route.params;
-  const obj1 = {id:1,name:"one"};
-  const obj2 = {id:2,name:"two"};
-  const obj3 = {id:3,name:"three"};
-  let data = [];
-  data.push(obj1);
-  data.push(obj2);
-  data.push(obj3);
+  const { status, data, error, isFetching } = useQuery("plansQuery", getPlans);
+  console.log("STATUS "+status+" / DATA "+data+" / ERROR "+error+" / ISFETCHING "+isFetching);
+  if (isFetching) {
+      return (
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#0c9"/>
+          </View>
+      )
+  }
+
   const ClickyList = getList(data, navigation);
   console.log(ClickyList);
   return (
@@ -64,9 +68,6 @@ function PlanScreen({ route, navigation }) {
 const Stack = createStackNavigator();
 
 function App() {
-    const { status, data, error, isFetching } = useQuery("plansQuery", getPlans);
-    console.log("STATUS "+status+" / DATA "+data+" / ERROR "+error+" / ISFETCHING "+isFetching);
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
