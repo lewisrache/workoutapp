@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -50,12 +51,26 @@ class BaseController extends AbstractController
      * Get all exercises associated with a plan
      * @Route("/plans/{id}/exercises", methods={"GET"})
      */
-    public function planExercisesGet()
+     // TODO - Request is unnecessary in the param list
+    public function planExercisesGet(int $id, Request $request)
     {
-        $exercises = [
-            ['id'=>1,'name'=>'squats'],
-            ['id'=>2,'name'=>'ohp']
-        ];
+        if ($id == 1) {
+            $exercises = [
+                ['id'=>1,'name'=>'squats'],
+                ['id'=>2,'name'=>'ohp'],
+                ['id'=>3,'name'=>'bb row'],
+            ];
+        } else if ($id == 2) {
+            $exercises = [
+                ['id'=>1,'name'=>'squats'],
+                ['id'=>4,'name'=>'bench'],
+                ['id'=>5,'name'=>'deadlift'],
+            ];
+        } else {
+            $exercises = [
+                ['id'=>6,'name'=>'bike'],
+            ];
+        }
         return $this->json($exercises);
     }
 }

@@ -13,8 +13,10 @@ export const getPlans = async () => {
 };
 
 // TODO - pass in plan id
-export const getPlanExercises = async () => {
-    const data = await fetch("http://localhost:8000/plans/1/exercises")
-                       .then(response => response.json());
+export const getPlanExercises = async (key, planId) => {
+    console.log("fetching for "+planId);
+    const data = await fetch("http://localhost:8000/plans/"+planId+"/exercises")
+                       .then(response => response.json())
+                       .catch(error=>console.log(error)); // TODO - catch isn't working :(
     return data;
 };
