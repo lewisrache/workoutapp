@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_base_number:
+    path: /number
+    controller: App\Controller\BaseController::number
