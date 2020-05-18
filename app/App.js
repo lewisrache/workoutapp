@@ -3,6 +3,8 @@ import { Button, View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import getList from './src/views/PlanList.js';
+import { useQuery } from 'react-query';
+import { getPlans, getPlanExercises } from './src/routes.js';
 
 function HomeScreen({ route, navigation }) {
   const {first} = route.params;
@@ -62,6 +64,9 @@ function PlanScreen({ route, navigation }) {
 const Stack = createStackNavigator();
 
 function App() {
+    const { status, data, error, isFetching } = useQuery("plansQuery", getPlans);
+    console.log("STATUS "+status+" / DATA "+data+" / ERROR "+error+" / ISFETCHING "+isFetching);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
