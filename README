@@ -1,0 +1,2 @@
+From workoutapi, run `symfony server:start`
+From app, run `node_modules/react-native/scripts/launchPackager.command ; exit;` (maybe. i think this launched itself when i ran the simulator through xcode)
