@@ -8,8 +8,11 @@ import { getPlans, getPlanExercises } from '../routes.js';
 import { styles } from '../styles.js';
 
 export default function PlansScreen({ route, navigation }) {
-  const {thing} = route.params;
-  const { status, data, error, isFetching } = useQuery("plansQuery", getPlans);
+  const {userId} = route.params;
+  const { status, data, error, isFetching } = useQuery(
+      userId && ["plansQuery", userId],
+      getPlans
+  );
   console.log("STATUS "+status+" / DATA "+data+" / ERROR "+error+" / ISFETCHING "+isFetching);
   if (isFetching) {
       return (
@@ -23,7 +26,7 @@ export default function PlansScreen({ route, navigation }) {
   console.log(ClickyList);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
+      <Text>Here are your current workout plans:</Text>
       { ClickyList }
       <TouchableOpacity title="Go to Home" onPress={() => navigation.navigate('Home')} >
          <Text>Home</Text>

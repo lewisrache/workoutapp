@@ -21,5 +21,19 @@ export const styles = StyleSheet.create({
         paddingVertical: 40,
         margin: 5,
         backgroundColor: "#fff"
-    }
+    },
+    planListItem: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        width: "100%"
+    },
+    planExerciseListItem: {
+        backgroundColor: '#9cf7f4',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        width: "100%"
+    },
 });

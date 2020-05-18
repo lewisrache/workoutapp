@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { styles } from '../styles.js';
 
 export default function getList(data, navigation) {
     console.log("GETTING LIST");
@@ -11,6 +12,7 @@ export default function getList(data, navigation) {
         return (
             <TouchableOpacity
                 title="Go to Details TESTo... "
+                style={styles.planListItem}
                 key={planId}
                 onPress={() => navigation.push('Plan', a)}
             >

@@ -10,41 +10,29 @@ import PlansScreen from './src/plans/Plans.js';
 import PlanScreen from './src/plans/Plan.js';
 
 function HomeScreen({ route, navigation }) {
-  const {first} = route.params;
+  const user = route.params;
+  const buttonTitle = "Go to "+user.name+"'s PLANS";
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
       <Button
-        title="Go to PLANS"
-        onPress={() => navigation.navigate('Plans', { thing: first})}
+        title={buttonTitle}
+        onPress={() => navigation.navigate('Plans', { userId: user.id })}
       />
     </View>
   );
 }
 
-const testConstAsync = async (inputVar) => {
-    console.log("TESTING ASYNC");
-    console.log(inputVar);
-    const data = await fetch("http://localhost:8000/users/1/plans")
-                       .then(response => response.json());
-    // syntactically equivalent:
-    //    const response = await fetch("http://localhost:8000/users/1/plans")
-    //    const data = await response.json();
-    console.log(data);
-    return data;
-};
-
 const Stack = createStackNavigator();
 
+// TODO - TestUser... lol
 function App() {
-    // const { status, data, error, isFetching } = useQuery("testAsync", testConstAsync("test"));
-    // console.log({ status, data, error, isFetching });
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} initialParams={{first: "homeOne"}}/>
+        <Stack.Screen name="Home" component={HomeScreen} initialParams={{id: 1, name: "TestUser"}}/>
         <Stack.Screen name="Plans" component={PlansScreen} />
-        <Stack.Screen name="Plan" component={PlanScreen} />
+        <Stack.Screen name="Plan" component={PlanScreen} options={({ route }) => ({ title: route.params.name })} />
       </Stack.Navigator>
     </NavigationContainer>
   );

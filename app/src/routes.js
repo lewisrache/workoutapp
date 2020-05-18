@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 // TODO - pass in user id
-export const getPlans = async () => {
-    console.log("GETTING PLANS ASYNC");
-    const data = await fetch("http://localhost:8000/users/1/plans")
+export const getPlans = async (key, userId) => {
+    console.log("GETTING PLANS ASYNC for "+userId);
+    const data = await fetch("http://localhost:8000/users/"+userId+"/plans")
                        .then(response => response.json());
     // syntactically equivalent:
     //    const response = await fetch("http://localhost:8000/users/1/plans")

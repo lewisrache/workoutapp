@@ -42,7 +42,7 @@ export default function PlanScreen({ route, navigation }) {
     const Exercises = data.map((exercise, i) => {
         console.log(exercise);
         return (
-            <Text key={exercise.id}>{exercise.name}</Text>
+            <Text style={styles.planExerciseListItem} key={exercise.id}>{exercise.name}</Text>
         );
     });
 
