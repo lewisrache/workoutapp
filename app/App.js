@@ -8,6 +8,7 @@ import { getPlans, getPlanExercises } from './src/routes.js';
 import { styles } from './src/styles.js';
 import PlansScreen from './src/plans/Plans.js';
 import PlanScreen from './src/plans/Plan.js';
+import NewPlanScreen from './src/plans/NewPlan.js';
 
 function HomeScreen({ route, navigation }) {
   const user = route.params;
@@ -33,6 +34,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} initialParams={{id: 1, name: "TestUser"}}/>
         <Stack.Screen name="Plans" component={PlansScreen} />
         <Stack.Screen name="Plan" component={PlanScreen} options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="NewPlan" component={NewPlanScreen} options={{ title: "New Plan" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

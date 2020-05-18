@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import {
     StyleSheet,
     ActivityIndicator,
@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     TouchableHighlight
     } from "react-native";
+import { Button } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useQuery } from 'react-query';
@@ -54,6 +55,10 @@ export default function PlanScreen({ route, navigation }) {
         }}>
             <Text>Plan: {plan.name}</Text>
             { Exercises }
+            <Button
+              title="Add New CURRENTLY DOES NOTHING"
+              onPress={() => console.log("clicked new exercise button")}
+            />
         </View>
     );
 }

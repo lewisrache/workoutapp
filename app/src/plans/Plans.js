@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { Button, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import getList from '../views/PlanList.js';
 import { useQuery } from 'react-query';
 import { getPlans, getPlanExercises } from '../routes.js';
 import { styles } from '../styles.js';
+import { Button } from 'react-native-elements';
+//import Icon from 'react-native-vector-icons/FontAwesome'; TODO figure out why this doesn't work
 
 export default function PlansScreen({ route, navigation }) {
   const {userId} = route.params;
@@ -24,10 +26,31 @@ export default function PlansScreen({ route, navigation }) {
 
   const ClickyList = getList(data, navigation);
   console.log(ClickyList);
+  // TODO - button onPress function: navigation.navigate('NewPlan', {userId: userId})
+  // TODO - but...that should maybe be abstracted out anyhow
+
+  // TODO - ICON for button isn't working currently:
+  // icon={
+  //   <Icon
+  //     name="arrow-right"
+  //     size={15}
+  //     color="white"
+  //   />
+  // }
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Here are your current workout plans:</Text>
       { ClickyList }
+      <Button
+        title="Add New Plan"
+        onPress={() => navigation.navigate('NewPlan', {userId: userId})}
+      />
+
+      <Button
+        title="MY BUTTON"
+        type="clear"
+        title="Button with icon component"
+      />
       <TouchableOpacity title="Go to Home" onPress={() => navigation.navigate('Home')} >
          <Text>Home</Text>
      </TouchableOpacity>
