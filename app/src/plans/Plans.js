@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { getPlans, getPlanExercises } from '../routes.js';
 import { styles } from '../styles.js';
 import { Button } from 'react-native-elements';
-//import Icon from 'react-native-vector-icons/FontAwesome'; TODO figure out why this doesn't work
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function PlansScreen({ route, navigation }) {
   const {userId} = route.params;
@@ -49,7 +49,14 @@ export default function PlansScreen({ route, navigation }) {
       <Button
         title="MY BUTTON"
         type="clear"
-        title="Button with icon component"
+        icon={
+          <Icon
+            name="plus-circle"
+            size={30}
+            color="#03a30e"
+          />
+        }
+        title=""
       />
       <TouchableOpacity title="Go to Home" onPress={() => navigation.navigate('Home')} >
          <Text>Home</Text>
@@ -57,6 +64,32 @@ export default function PlansScreen({ route, navigation }) {
       <TouchableOpacity title="Go back" onPress={() => navigation.goBack()} >
          <Text>Back</Text>
      </TouchableOpacity>
+     <View style={{flexDirection:"row"}}>
+         <Button
+           title="buttonA"
+           type="clear"
+           icon={
+             <Icon
+               name="plus-circle"
+               size={30}
+               color="black"
+             />
+           }
+           title=""
+         />
+         <Button
+           title="buttonB"
+           type="clear"
+           icon={
+             <Icon
+               name="plus-circle"
+               size={30}
+               color="red"
+             />
+           }
+           title=""
+         />
+     </View>
     </View>
   );
 }

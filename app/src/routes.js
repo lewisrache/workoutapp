@@ -21,10 +21,17 @@ export const getPlanExercises = async (key, planId) => {
 
 // TODO - this might not be the right thing... since create isn't really a "fetch"
 // TODO - how pass in POST data?
-export const createPlan = async (key, userId) => {
-    console.log("creating for "+userId);
-    const data = await fetch("http://localhost:8000/plans/"+userId+"/exercises")
-                       .then(response => response.json())
-                       .catch(error=>console.log(error)); // TODO - catch isn't working :(
-    return data;
+export const createPlan = async (data) => {
+    console.log(data);
+    const responseJson = await fetch('http://localhost:8000/plans/', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json());
+    console.log(responseJson);
+    return responseJson;
 };
