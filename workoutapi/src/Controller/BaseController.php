@@ -73,4 +73,21 @@ class BaseController extends AbstractController
         }
         return $this->json($exercises);
     }
+
+    /**
+     * Record an exercise
+     * @Route("/exercises/", methods={"POST"})
+     * TODO - need user id.
+     */
+    public function recordExercise()
+    {
+        $request = Request::createFromGlobals();
+        $data = $request->getContent();
+        error_log($data);
+        // TODO??
+        // TODO validation...
+        $middle = new \App\Middle\Exercise();
+        $exercise = $middle->record(json_decode($data));
+        return new Response("why hello there");
+    }
 }
