@@ -10,4 +10,5 @@ class Component
     public $exercise_id; // optional
     public $date; // readonly for now.
     public $data; // JSON object. TODO - should it have its own model????
+    public $id;
 }

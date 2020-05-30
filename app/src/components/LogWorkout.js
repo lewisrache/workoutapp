@@ -17,6 +17,7 @@ import { styles } from '../styles.js';
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
+import Exercise from './Exercise.js';
 
 export default function LogWorkoutScreen({ route, navigation }) {
 // TODO - add exercise
@@ -32,7 +33,10 @@ export default function LogWorkoutScreen({ route, navigation }) {
 
             <Button
               title="Add Exercise CURRENTLY DOES NOTHING"
-              onPress={() => console.log("clicked ADD exercise TO PLAN button")}
+              onPress={() => {
+                  console.log("clicked ADD exercise TO PLAN button");
+                  navigation.navigate("NewExercise");
+              }}
             />
             <Text>Here would be a list of exercises added to the plan</Text>
             <Button

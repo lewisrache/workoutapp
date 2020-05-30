@@ -2,37 +2,13 @@
 
 namespace App\Middle;
 
-class Exercise
+class Exercise extends Base
 {
-    protected $storage; // something really weirds me out here
-    // TODO - mega restructuring i'm sure.
     public function __construct()
     {
-        $this->storage = new \App\Storage\Exercise();
+        parent::__construct(new \App\Storage\Exercise());
     }
-
-    public function getAll()
-    {
-
-    }
-
-    public function record($data)
-    {
-        // TODO i feel ......wrong about everything.
-
-        // TODO - validation? possibly happens before now? no.... probably now?? unsure.
-
-        // TODO - eventual piping would be ...
-        // - transform into Exercise Model
-        // - pass transformation into storage layer
-
-        $exercise = $this->transformToModel($data);
-        $exercise = $this->storage->insert($exercise);
-        return $exercise; // ???????
-    }
-
-    // ***** should the following functions be in another file? ******
-
+// TODO - everything needs to be updated for Exercises
     protected function transformToModel($data)
     {
         $exercise = new \App\Model\Exercise();

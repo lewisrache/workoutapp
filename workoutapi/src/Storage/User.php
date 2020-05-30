@@ -1,6 +1,6 @@
 <?php
 namespace App\Storage;
-
+// TODO - for all these storage files - if we end up caching or w/e, getting and returning is a good way to prime the cache.
 class User
 {
     protected static $dbh;

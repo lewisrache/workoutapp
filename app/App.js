@@ -11,6 +11,8 @@ import PlansScreen from './src/plans/Plans.js';
 import PlanScreen from './src/plans/Plan.js';
 import NewPlanScreen from './src/plans/NewPlan.js';
 import LogWorkoutScreen from './src/components/LogWorkout.js';
+import Exercise from './src/components/Exercise.js';
+import ComponentScreen from './src/components/ComponentTracker.js';
 
 function HomeScreen({ route, navigation }) {
   const user = route.params;
@@ -67,7 +69,9 @@ function App() {
         <Stack.Screen name="Base" component={Base}/>
         <Stack.Screen name="Plans" component={PlansScreen} />
         <Stack.Screen name="Plan" component={PlanScreen} options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="WorkoutComponent" component={ComponentScreen} options={({ route }) => ({ title: route.params.name })} />
         <Stack.Screen name="NewPlan" component={NewPlanScreen} options={{ title: "New Plan" }} />
+        <Stack.Screen name="NewExercise" component={Exercise} />
     </Stack.Navigator>
     </NavigationContainer>
   );

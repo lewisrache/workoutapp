@@ -22,6 +22,7 @@ export const getPlanExercises = async (key, planId) => {
 // TODO - this might not be the right thing... since create isn't really a "fetch"
 // TODO - how pass in POST data?
 export const createPlan = async (data) => {
+    console.log("creating plan");
     console.log(data);
     const responseJson = await fetch('http://localhost:8000/plans/', {
         method: 'POST',
@@ -32,6 +33,25 @@ export const createPlan = async (data) => {
         body: JSON.stringify(data)
     })
     .then(response => response.json());
+    console.log(responseJson);
+    return responseJson;
+};
+
+export const recordedExercise = async (data) => {
+    console.log("recording exercise");
+    console.log(data);
+    console.log(JSON.stringify(data));
+    const response = await fetch('http://localhost:8000/exercises/', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    console.log(response);
+    return response;
+    //.then(response => response.json());
     console.log(responseJson);
     return responseJson;
 };

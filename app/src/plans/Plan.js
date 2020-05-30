@@ -13,6 +13,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useQuery } from 'react-query';
 import { getPlans, getPlanExercises } from '../routes.js';
 import { styles } from '../styles.js';
+import getList from '../views/ComponentList.js';
 
 export default function PlanScreen({ route, navigation }) {
     // TODO - back button should be in the header maybe
@@ -40,12 +41,13 @@ export default function PlanScreen({ route, navigation }) {
     }
 
     // TODO - probably exercises need to be a clicky list too??
-    const Exercises = data.map((exercise, i) => {
-        console.log(exercise);
-        return (
-            <Text style={styles.planExerciseListItem} key={exercise.id}>{exercise.name}</Text>
-        );
-    });
+    // const Exercises = data.map((exercise, i) => {
+    //     console.log(exercise);
+    //     return (
+    //         <Text style={styles.planExerciseListItem} key={exercise.id}>{exercise.name}</Text>
+    //     );
+    // });
+    const Exercises = getList(data, navigation);
 
     return (
         <View style={{

@@ -23,28 +23,26 @@ class BaseController extends AbstractController
      */
     public function test()
     {
-		$json = [
-			['id'=>1,'name'=>'Leanne','email'=>'leanne@email','company'=>['name'=>'leanne company']],
-			['id'=>2,'name'=>'LEANne','email'=>'leanne@email','company'=>['name'=>'leanne company']],
-		];
+        $json = [
+            ['id'=>1,'name'=>'Leanne','email'=>'leanne@email','company'=>['name'=>'leanne company']],
+            ['id'=>2,'name'=>'LEANne','email'=>'leanne@email','company'=>['name'=>'leanne company']],
+        ];
         return $this->json($json);
         return new Response('<html><body>Eventually, this will look better.</body></html>');
     }
 
-	// Workout API endpoints...
+    // Workout API endpoints...
 
-	/**
-	 * Get all plans associated with a user
-	 * @Route("/users/{id}/plans", methods={"GET"})
-	 */
-	public function plansGet()
-	{
-		$plans = [
-			['id'=>1,'name'=>'A'],
-			['id'=>2,'name'=>'B']
-		];
-		return $this->json($plans);
-	}
+    /**
+     * Get all plans associated with a user
+     * @Route("/users/{id}/plans", methods={"GET"})
+     */
+    public function plansGet(int $id)
+    {
+        $middle = new \App\Middle\Program();
+        $plans = $middle->fetchAll($id);
+        return $this->json($plans);
+    }
 
 // TODO - should getting a Plan return its exercises?
     /**
@@ -54,23 +52,8 @@ class BaseController extends AbstractController
      // TODO - Request is unnecessary in the param list
     public function planExercisesGet(int $id, Request $request)
     {
-        if ($id == 1) {
-            $exercises = [
-                ['id'=>1,'name'=>'squats'],
-                ['id'=>2,'name'=>'ohp'],
-                ['id'=>3,'name'=>'bb row'],
-            ];
-        } else if ($id == 2) {
-            $exercises = [
-                ['id'=>1,'name'=>'squats'],
-                ['id'=>4,'name'=>'bench'],
-                ['id'=>5,'name'=>'deadlift'],
-            ];
-        } else {
-            $exercises = [
-                ['id'=>6,'name'=>'bike'],
-            ];
-        }
+        $middle = new \App\Middle\Program();
+        $exercises = $middle->fetchExercises($id);
         return $this->json($exercises);
     }
 
@@ -88,6 +71,23 @@ class BaseController extends AbstractController
         // TODO validation...
         $middle = new \App\Middle\Exercise();
         $exercise = $middle->record(json_decode($data));
+        return new Response("why hello there");
+    }
+
+
+    /**
+     * Record an exercise
+     * @Route("/components/", methods={"POST"})
+     */
+    public function recordComponent()
+    {
+        $request = Request::createFromGlobals();
+        $data = $request->getContent();
+        error_log($data);
+        // TODO??
+        // TODO validation...
+        $middle = new \App\Middle\Component();
+        $component = $middle->record(json_decode($data));
         return new Response("why hello there");
     }
 }
