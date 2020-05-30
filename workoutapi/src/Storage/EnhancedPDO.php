@@ -4,7 +4,7 @@ namespace App\Storage;
 
 class EnhancedPDO extends \PDO {
 
-	public function execQuery($query, $data) {
+	public function execQuery($query, $data = []) {
 
 		$stmt = $this->prepare($query);
 		if (!$stmt->execute($data)) {
