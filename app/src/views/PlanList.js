@@ -5,8 +5,11 @@ import { styles } from '../styles.js';
 export default function getList(data, navigation) {
     console.log("GETTING LIST");
     console.log(data);
-    let listData = data.map((a, i) => {
+    let programs = data.programs;
+    const userId = data.userId;
+    let listData = programs.map((a, i) => {
         console.log(a);
+        a.userId = userId;
         const screenName = a.name;
         const planId = a.id;
         return (

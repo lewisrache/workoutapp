@@ -26,6 +26,7 @@ export default function PlanScreen({ route, navigation }) {
         plan.id && ["planExerciseQuery", plan.id],
         getPlanExercises
     );
+    // TODO - need to pass {userId: userId}
     console.log({ status, data, error, isFetching });
     if (isFetching) {
         // TODO - make this a core function
@@ -47,7 +48,8 @@ export default function PlanScreen({ route, navigation }) {
     //         <Text style={styles.planExerciseListItem} key={exercise.id}>{exercise.name}</Text>
     //     );
     // });
-    const Exercises = getList(data, navigation);
+    let megadata = {exercises:data, userId:plan.userId, programId:plan.id};
+    const Exercises = getList(megadata, navigation);
 
     return (
         <View style={{

@@ -23,8 +23,8 @@ export default function PlansScreen({ route, navigation }) {
           </View>
       )
   }
-
-  const ClickyList = getList(data, navigation);
+  let megadata = {programs:data, userId:userId};
+  const ClickyList = getList(megadata, navigation);
   console.log(ClickyList);
   // TODO - button onPress function: navigation.navigate('NewPlan', {userId: userId})
   // TODO - but...that should maybe be abstracted out anyhow

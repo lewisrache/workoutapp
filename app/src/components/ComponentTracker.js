@@ -8,11 +8,13 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { recordedComponent } from '../routes.js';
 
-export default function ComponentScreen({ navigation }) {
+export default function ComponentScreen({ route, navigation }) {
     // TODO - gotta send these through.
-    const userId = 1;
-    const exerciseId = 1;
-    const workoutId = 1; // TODO - to get this, we need to START workout
+    console.log("ROUTE PARAMS:");
+    console.log(route.params);
+    console.log("(end)");
+    const {userId, workoutId} = route.params;
+    const exerciseId = route.params.id;
 
     const repNumbers = [...Array(10).keys()]; // NOTE - array 0-9
     // let repPickers = repNumbers.map((value, index) => {
@@ -152,6 +154,7 @@ export default function ComponentScreen({ navigation }) {
             workout_id: workoutId,
             user_id: userId,
             exercise_id: exerciseId,
+            componentName: route.params.name,
             data: {weight:currWeightValue.value, setReps:setReps}
         };
         console.log(formData);
