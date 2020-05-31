@@ -36,4 +36,11 @@ export const styles = StyleSheet.create({
         marginHorizontal: 16,
         width: "100%"
     },
+    componentLabel: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        width: "35%"
+    },
 });
