@@ -55,3 +55,18 @@ export const recordedExercise = async (data) => {
     console.log(responseJson);
     return responseJson;
 };
+
+export const recordedComponent = async (data) => {
+    console.log("recording component");
+    console.log(JSON.stringify(data));
+    const response = await fetch('http://localhost:8000/components/', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    console.log(response);
+    return response;
+};

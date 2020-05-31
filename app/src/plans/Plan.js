@@ -58,8 +58,12 @@ export default function PlanScreen({ route, navigation }) {
             <Text>Plan: {plan.name}</Text>
             { Exercises }
             <Button
-              title="Add New CURRENTLY DOES NOTHING"
+              title="Add Exercise to Workout"
               onPress={() => console.log("clicked new exercise button")}
+            />
+            <Button
+              title="Complete Workout"
+              onPress={() => console.log("clicked complete workout button")}
             />
         </View>
     );
