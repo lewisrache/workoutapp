@@ -90,15 +90,24 @@ export default function App({ navigation }) {
   // okay well that didn't even work. i can make text appear but the button decides not to.
   // FINE. for now, we can only log out from the home screen. whatever.
 
-  function LoggedInScreen() {
-      // TODO - move to file; rename
-      // TODO - needs a title.
-      return (
-          <Stack.Navigator>
-              {ScreenList}
-          </Stack.Navigator>
-      );
-  }
+    function LoggedInScreen({navigation}) {
+        // TODO - move to file; rename
+        // TODO - needs a title.
+        const { signOut } = React.useContext(AuthContext);
+
+        React.useLayoutEffect(() => {
+            navigation.setOptions({
+                headerRight: () => (
+                    <Button onPress={signOut} title="Log out" />
+                ),
+            });
+        }, [navigation]);
+        return (
+            <Stack.Navigator>
+                {ScreenList}
+            </Stack.Navigator>
+        );
+    }
 
   return (
     <AuthContext.Provider value={authContext}>

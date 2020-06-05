@@ -43,4 +43,9 @@ export const styles = StyleSheet.create({
         marginHorizontal: 16,
         width: "35%"
     },
+    loginFormInputComponent: {
+        backgroundColor: "#fff",
+        paddingVertical: 20,
+        paddingHorizontal: 20,
+    },
 });
