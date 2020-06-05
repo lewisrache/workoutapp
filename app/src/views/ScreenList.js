@@ -4,10 +4,10 @@ import { styles } from '../styles.js';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Stack } from '../resources/GlobalConsts';
 import Base from '../components/Base';
-import PlansScreen from '../plans/Plans';
-import PlanScreen from '../plans/Plan';
+import PlansScreen from '../components/Plans';
+import PlanScreen from '../components/Plan';
 import ComponentScreen from '../components/ComponentTracker';
-import NewPlanScreen from '../plans/NewPlan';
+import NewPlanScreen from '../components/NewPlan';
 import Exercise from '../components/Exercise';
 
 export default function getScreenList() {

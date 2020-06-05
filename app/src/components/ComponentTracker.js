@@ -1,7 +1,7 @@
 // ScreenA.js
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { Picker } from '@react-native-community/picker';
+
 import { styles } from '../styles.js';
 import NumericInput from 'react-native-numeric-input';
 import { Button } from 'react-native-elements';
@@ -9,19 +9,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { recordedComponent } from '../routes.js';
 
 export default function ComponentScreen({ route, navigation }) {
-    // TODO - gotta send these through.
-    console.log("ROUTE PARAMS:");
-    console.log(route.params);
-    console.log("(end)");
     const {userId, workoutId} = route.params;
     const exerciseId = route.params.id;
 
     const repNumbers = [...Array(10).keys()]; // NOTE - array 0-9
-    // let repPickers = repNumbers.map((value, index) => {
-    //     return (
-    //         <Picker.Item label={value} value={value} />
-    //     );
-    // });
     //https://stackoverflow.com/questions/54679928/using-dynamic-var-with-set-state-in-react-hooks
     const [setReps, onChangeReps] = React.useState({});
     const [currRepValue, onChangeSetRepNumber] = React.useState({value:5});
@@ -68,36 +59,12 @@ export default function ComponentScreen({ route, navigation }) {
                 leftButtonBackgroundColor={setRepColours.leftButtonBackgroundColor}
             />
         );
-        // delete the below when we no longer need visual help
-        return (
-            <Button
-              title="buttonA"
-              type="clear"
-              icon={
-                <Icon
-                  name="plus-circle"
-                  size={75}
-                  color="black"
-                />
-              }
-              title=""
-            />
-        );
     }
     const Circles = repNumbers.map((value, index) => {
         value = value+1;
         return getRepNumberSetter(value);
     });
 
-    // <Picker
-    //     selectedValue={currRepValue}
-    //     style={{height: 50, width: 100}}
-    //     onValueChange={(itemValue, itemIndex) =>
-    //         onChangeSetRepNumber({currRepValue: itemValue})
-    //     }
-    // >
-    //     {repPickers}
-    // </Picker>
     // TODO - is having ONE weight setter going to be generic enough for my likings?
     function getWeightSetter() {
         return (
@@ -169,15 +136,7 @@ export default function ComponentScreen({ route, navigation }) {
         }}>
             {getWeightSetter()}
             {getNumSetSetter()}
-
-            <TouchableOpacity
-                title="Go to Details TESTo... "
-                style={styles.planListItem}
-                key="repNumbers"
-                onPress={() => navigation.push('Reps', a)}
-            >
-                <Text>Rep Numbers - possible unnecessary</Text>
-            </TouchableOpacity>
+            <Text style={styles.planListItem}>Reps/Set - see below</Text>
             <View style={{
                 flexDirection:"row", flexWrap:"wrap"
             }}>

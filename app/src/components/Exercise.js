@@ -8,8 +8,6 @@ import {
     TouchableHighlight
     } from "react-native";
 import { Button, Input } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { useQuery } from 'react-query';
 import { getPlans, getPlanExercises } from '../routes.js';
 import { styles } from '../styles.js';

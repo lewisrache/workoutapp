@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import {
-    StyleSheet,
-    ActivityIndicator,
-    FlatList,
-    TouchableOpacity,
-    TouchableHighlight
+    View,
+    Text,
+    ActivityIndicator
     } from "react-native";
 import { Button } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { useQuery } from 'react-query';
-import { getPlans, getPlanExercises } from '../routes.js';
+import { getPlanExercises } from '../routes.js';
 import { styles } from '../styles.js';
 import getList from '../views/ComponentList.js';
 
@@ -41,13 +36,6 @@ export default function PlanScreen({ route, navigation }) {
         console.log(error.message);
     }
 
-    // TODO - probably exercises need to be a clicky list too??
-    // const Exercises = data.map((exercise, i) => {
-    //     console.log(exercise);
-    //     return (
-    //         <Text style={styles.planExerciseListItem} key={exercise.id}>{exercise.name}</Text>
-    //     );
-    // });
     let megadata = {exercises:data, userId:plan.userId, programId:plan.id};
     const Exercises = getList(megadata, navigation);
 

@@ -13,7 +13,7 @@ import LogWorkoutScreen from './LogWorkout';
 // }
 // options={({ navigation, route }) => ({
 // headerTitle: props => <LogoTitle {...props} />,
-// })} 
+// })} -- appears header doesn't work with tab navigator??
 export default function Base() {
     const Tab = createBottomTabNavigator();
     return (

@@ -3,7 +3,7 @@ import { Button, View, Text, TextInput } from 'react-native';
 import { userLogin } from '../routes';
 import { AuthContext } from '../resources/GlobalConsts';
 
-// TODO - on login, need to run the auth, and only navigate after successful login. and tokens need to be used, not just ids
+// TODO - tokens need to be used, not just ids
 export default function LoginScreen({ route, navigation }) {
     console.log(route);
 
