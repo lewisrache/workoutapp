@@ -18,8 +18,9 @@ import LoginScreen from './src/components/LoginScreen.js';
 import { AsyncStorage, Button, Text, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Stack, AuthContext } from './src/resources/GlobalConsts';
 
-const Stack = createStackNavigator();
+
 // const Tab = createBottomTabNavigator();
 const ScreenList = getScreenList();
 // -- moved HomeScreen to Home.js
@@ -91,8 +92,6 @@ const ScreenList = getScreenList();
 // import { AsyncStorage, Button, Text, TextInput, View } from 'react-native';
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
-
-export const AuthContext = React.createContext();
 
 function SplashScreen() {
   return (
@@ -181,9 +180,21 @@ export default function App({ navigation }) {
     []
   );
 
+  // TODO - can put a header inside the navigation container but outside the screens.
+  // unsure if this is the best way or not, but for now... i will do that.
+  // TODO - shouldn't show LOG OUT while logged out, but whatever.
+  // okay well that didn't even work. i can make text appear but the button decides not to.
+  // FINE. for now, we can only log out from the home screen. whatever.
+
+
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
+        <View><Button onPress={() => {
+            console.log("logging out");
+            const { signOut } = React.useContext(AuthContext);
+            signOut();
+        }} title="Log out" /><Text>hello</Text></View>
         <Stack.Navigator>
           {state.isLoading ? (
             // We haven't finished checking for the token yet

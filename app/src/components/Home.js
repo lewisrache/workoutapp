@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
-import { AuthContext } from '../../App.js';
+import { AuthContext } from '../resources/GlobalConsts';
 
 export default function HomeScreen({ route, navigation }) {
     console.log("here in the home screen");
@@ -40,6 +40,7 @@ export default function HomeScreen({ route, navigation }) {
         title={buttonTitle}
         onPress={() => navigation.navigate('Plans', { userId: user.id })}
       />
+      <Button onPress={signOut} title="Log out" />
     </View>
   );
 }

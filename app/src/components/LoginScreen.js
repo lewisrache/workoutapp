@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, View, Text, TextInput } from 'react-native';
-import { userLogin } from '../routes.js';
-import { AuthContext } from '../../App.js';
+import { userLogin } from '../routes';
+import { AuthContext } from '../resources/GlobalConsts';
 
 // TODO - on login, need to run the auth, and only navigate after successful login. and tokens need to be used, not just ids
 export default function LoginScreen({ route, navigation }) {
@@ -12,9 +12,22 @@ export default function LoginScreen({ route, navigation }) {
 
       const { signIn } = React.useContext(AuthContext);
 
-      function login() {
-          userLogin({ username, password });
-          signIn({ username, password });
+      const login = async() => {
+          // validate fields filled in
+          console.log({ username, password });
+          if (username.length == 0 || password.length == 0) {
+              console.log('undefined!!!!!');
+              alert("be better than this."); // TODO
+              return false;
+          }
+          let result = await userLogin({ username, password }).then(response=>response.json());
+          console.log(result);
+          console.log("what.");
+          if (result.isAuthenticated) {
+              signIn({ username, password });
+          } else {
+              alert("bad.");
+          }
       }
 
       return (
@@ -30,7 +43,7 @@ export default function LoginScreen({ route, navigation }) {
             onChangeText={setPassword}
             secureTextEntry
           />
-          <Button title="Sign in" onPress={() => login()} />
+          <Button title="Sign in" onPress={() => {console.log("logging in..."); login();}} />
         </View>
       );
 }

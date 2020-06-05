@@ -74,7 +74,8 @@ export const recordedComponent = async (data) => {
 export const userLogin = async (data) => {
     console.log("user login");
     console.log(JSON.stringify(data));
-    const response = await fetch('http://localhost:8000/user/login/', {
+    // TODO - are passwords supposed to be sent pre-hashed, or are they just supposed to be encrypted/SSL?
+    const response = await fetch('http://localhost:8000/users/login/', {
         method: 'POST',
         headers: {
             Accept: 'application/json',

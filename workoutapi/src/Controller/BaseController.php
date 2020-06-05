@@ -96,16 +96,19 @@ class BaseController extends AbstractController
     // TODO - something is making this crazy so i had to unRoute it
     /**
      * User login
-     * @ Route("/users/login", methods={POST})
+     * @Route("/users/login/", methods={"POST"})
      */
     public function userLogin()
     {
         $request = Request::createFromGlobals();
-        $data = $request->getContent();
+        $data = $request->getContent(); // this is json
+        error_log($data);
         // TODO - actual validation and authentication
         $fakeNotAuth = ['isAuthenticated' => false, 'error' => "test error"];
         $middle = new \App\Middle\User();
         $fakeAuth = ['isAuthenticated' => true, 'user' => $middle->getByUsername('rachel')];
-        return $this->json($fakeNotAuth);
+        $var = $this->json($fakeAuth);
+        error_log($var);
+        return $var;
     }
 }

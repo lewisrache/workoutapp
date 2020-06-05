@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { styles } from '../styles.js';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Stack } from '../resources/GlobalConsts';
 import Base from '../components/Base';
 import PlansScreen from '../plans/Plans';
 import PlanScreen from '../plans/Plan';
@@ -10,7 +11,6 @@ import NewPlanScreen from '../plans/NewPlan';
 import Exercise from '../components/Exercise';
 
 export default function getScreenList() {
-    const Stack = createStackNavigator();
     return (
         <>
             <Stack.Screen name="Base" component={Base} />
