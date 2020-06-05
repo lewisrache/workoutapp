@@ -86,3 +86,32 @@ export const userLogin = async (data) => {
     console.log(response);
     return response;
 };
+
+export const startWorkout = async (data) => {
+    console.log("starting workout");
+    console.log(JSON.stringify(data));
+    const response = await fetch('http://localhost:8000/workouts/', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    console.log(response);
+    return response;
+};
+
+export const completeWorkout = async (data) => {
+    console.log("completing workout");
+    console.log(JSON.stringify(data));
+    const response = await fetch('http://localhost:8000/workouts/'+data.id+'/complete/', {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    console.log(response);
+    return response;
+};

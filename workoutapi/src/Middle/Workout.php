@@ -12,8 +12,18 @@ class Workout extends Base
     protected function transformToModel($data)
     {
         $workout = new \App\Model\Workout();
-        $workout->user_id = $data->user_id; // TODO - do i like that the name is called this?
-        $workout->program_id = $data->program_id;
+        $workout->user_id = $data->userId; // TODO - do i like that the name is called this?
+        $workout->program_id = $data->programId;
         return $workout;
+    }
+
+    /**
+     * call to complete the workout
+     * @param  int    $workoutId - workout being completed
+     * @return ???
+     */
+    public function complete(int $workoutId)
+    {
+        return $this->storage->update($workoutId, ['date_completed' => 'CURRENT_TIMESTAMP']);
     }
 }

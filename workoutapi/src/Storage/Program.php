@@ -26,7 +26,10 @@ class Program
 
     public function fetchAll(int $userId)
     {
-        $sql = "SELECT id, name FROM programs WHERE user_id = :user_id";
+        $sql = "SELECT p.id, p.name, w.id as currentWorkoutId
+                FROM programs p
+                LEFT JOIN workouts w ON (w.program_id = p.id AND w.date_completed IS NULL)
+                WHERE p.user_id = :user_id";
         $data = [
             ':user_id' => $userId
         ];

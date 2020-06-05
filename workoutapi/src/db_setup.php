@@ -33,7 +33,8 @@ $db->execQuery($sql);
 $sql = "CREATE TABLE workouts(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
-            date TEXT DEFAULT CURRENT_TIMESTAMP,
+            date_started TEXT DEFAULT CURRENT_TIMESTAMP,
+            date_completed TEXT DEFAULT NULL,
             program_id DEFAULT NULL,
             FOREIGN KEY(user_id) REFERENCES users(id),
             FOREIGN KEY(program_id) REFERENCES programs(id)

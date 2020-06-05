@@ -10,7 +10,7 @@ export default function getList(data, navigation) {
         const screenName = a.name;
         const exerciseId = a.id;
         a.userId = data.userId;
-        a.workoutId = data.programId; // TODO - workout id doesn't exist yet; stop gap; need START workout
+        a.workoutId = data.workoutId;
         return (
             <TouchableOpacity
                 title=""

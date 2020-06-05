@@ -111,4 +111,32 @@ class BaseController extends AbstractController
         error_log($var);
         return $var;
     }
+
+    /**
+     * start a workout
+     * @Route("/workouts/", methods={"POST"})
+     */
+    public function startWorkout()
+    {
+        $request = Request::createFromGlobals();
+        $data = $request->getContent(); // this is json
+        error_log($data);
+        // TODO - validation - needs user and program id.
+        $middle = new \App\Middle\Workout();
+        $result = $middle->record(json_decode($data));
+        return $this->json($result);
+    }
+
+    /**
+     * complete a workout
+     * @Route("/workouts/{id}/complete/", methods={"PUT"})
+     */
+    public function completeWorkout(int $id)
+    {
+        error_log("workout ID: $id");
+        // TODO - validation - needs user and program id.
+        $middle = new \App\Middle\Workout();
+        $result = $middle->complete($id);
+        return $this->json(['success'=>true]); // TODO - return something better
+    }
 }
