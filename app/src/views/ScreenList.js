@@ -13,7 +13,7 @@ import Exercise from '../components/Exercise';
 export default function getScreenList() {
     return (
         <>
-            <Stack.Screen name="Base" component={Base} />
+            <Stack.Screen name="Base" component={Base} options={{headerShown:false}}/>
             <Stack.Screen name="Plans" component={PlansScreen} />
             <Stack.Screen name="Plan" component={PlanScreen} options={({ route }) => ({ title: route.params.name })} />
             <Stack.Screen name="WorkoutComponent" component={ComponentScreen} options={({ route }) => ({ title: route.params.name })} />

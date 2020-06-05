@@ -30,7 +30,7 @@ export default function LoginScreen({ route, navigation }) {
     }
 
     return (
-        <View>
+        <View style={styles.loginScreen}>
             <TextInput
                 style={styles.loginFormInputComponent}
                 placeholder="Username"
@@ -44,7 +44,11 @@ export default function LoginScreen({ route, navigation }) {
                 onChangeText={setPassword}
                 secureTextEntry
             />
-            <Button title="Sign in" onPress={() => {console.log("logging in..."); login();}} />
+            <Button
+                style={styles.button}
+                title="Sign in"
+                onPress={() => {console.log("logging in..."); login();}}
+            />
         </View>
     );
 }

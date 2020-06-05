@@ -6,6 +6,7 @@ import LoadingScreen from './src/components/LoadingScreen.js';
 import { AsyncStorage, Button, Text, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Stack, AuthContext } from './src/resources/GlobalConsts';
+import { AppName } from './src/resources/TextValues';
 
 const ScreenList = getScreenList();
 
@@ -112,11 +113,6 @@ export default function App({ navigation }) {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        <View><Button onPress={() => {
-            console.log("logging out");
-            const { signOut } = React.useContext(AuthContext);
-            signOut();
-        }} title="Log out" /><Text>hello</Text></View>
         <Stack.Navigator>
           {state.isLoading ? (
             // We haven't finished checking for the token yet
@@ -127,14 +123,18 @@ export default function App({ navigation }) {
               name="SignIn"
               component={LoginScreen}
               options={{
-                title: 'Sign in',
+                title: AppName,
             // When logging out, a pop animation feels intuitive
                 animationTypeForReplace: state.isSignout ? 'pop' : 'push',
               }}
             />
           ) : (
             // User is signed in
-            <Stack.Screen name="LoggedInScreen" component={LoggedInScreen} />
+            <Stack.Screen
+                name="LoggedInScreen"
+                component={LoggedInScreen}
+                options={{title: AppName}}
+            />
           )}
           </Stack.Navigator>
       </NavigationContainer>

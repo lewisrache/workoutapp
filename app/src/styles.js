@@ -47,5 +47,20 @@ export const styles = StyleSheet.create({
         backgroundColor: "#fff",
         paddingVertical: 20,
         paddingHorizontal: 20,
+        width: "80%",
+        marginTop: 10
     },
+    loginScreen: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    landingPage: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    button: {
+        
+    }
 });
