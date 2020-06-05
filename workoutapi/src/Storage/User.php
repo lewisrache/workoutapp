@@ -21,4 +21,28 @@ class User
         $user->id = self::$dbh->lastInsertId();
         return $user; // TODO.... what. does this make any sense? should it return the whole thing? i dunnoooo
     }
+
+    /**
+     * Get a user by their username
+     * @param string $username - name to search by
+     * @return \App\Model\User - the user model describing the user
+     */
+    public function getByUsername(string $username)
+    {
+        // TODO - validation?
+        // TODO - uniqueness on username
+        $sql = "SELECT * FROM users WHERE name = :name";
+        $data = [
+            ':name' => $username
+        ];
+        $result = self::$dbh->execQuery($sql, $data);
+        if (count($result) !== 1) {
+            // TODO - throw something maybe i dunno, be better.
+            return;
+        }
+        $user = new \App\Model\User();
+        $user->name = $result[0]['name'];
+        $user->id = $result[0]['id'];
+        return $user;
+    }
 }

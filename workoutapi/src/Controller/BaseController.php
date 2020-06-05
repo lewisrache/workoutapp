@@ -90,4 +90,22 @@ class BaseController extends AbstractController
         $component = $middle->record(json_decode($data));
         return new Response("why hello there");
     }
+
+    // TODO - better auth
+    // TODO - fix atom to not do idiotic autocomplete
+    // TODO - something is making this crazy so i had to unRoute it
+    /**
+     * User login
+     * @ Route("/users/login", methods={POST})
+     */
+    public function userLogin()
+    {
+        $request = Request::createFromGlobals();
+        $data = $request->getContent();
+        // TODO - actual validation and authentication
+        $fakeNotAuth = ['isAuthenticated' => false, 'error' => "test error"];
+        $middle = new \App\Middle\User();
+        $fakeAuth = ['isAuthenticated' => true, 'user' => $middle->getByUsername('rachel')];
+        return $this->json($fakeNotAuth);
+    }
 }

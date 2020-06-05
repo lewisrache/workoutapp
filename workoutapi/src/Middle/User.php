@@ -15,4 +15,9 @@ class User extends Base
         $user->name = $data->userName;
         return $user;
     }
+
+    public function getByUsername($username)
+    {
+        return $this->storage->getByUsername($username);
+    }
 }
