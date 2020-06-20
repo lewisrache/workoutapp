@@ -12,4 +12,9 @@ final class Exercise
     {
         return new self($name);
     }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
