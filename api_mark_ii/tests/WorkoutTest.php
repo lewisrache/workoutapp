@@ -68,4 +68,55 @@ final class WorkoutTest extends TestCase
         $workout->addExercise($newExercise);
         $this->assertEquals($newExercise->getName(), $workout->getComponents()[3]->getName());
     }
+
+    public function testAddExerciseToWorkoutDoesNotAlterProgramExerciseList(): void
+    {
+        $programExercises = [
+            Exercise::fromString('exercisename1'),
+            Exercise::fromString('exercisename2'),
+            Exercise::fromString('exercisename3'),
+        ];
+        $program = Program::create(
+            'programname',
+            ...$programExercises
+        );
+        $workout = Workout::fromProgram($program);
+        $newExercise = Exercise::fromString('newexercise');
+        $workout->addExercise($newExercise);
+        $this->assertEquals($programExercises, $program->getExercises());
+    }
+
+    public function testRemoveExerciseComponentFromWorkoutAndDoesNotAlterProgramExerciseList(): void
+    {
+        $removedExercise = Exercise::fromString("removed");
+        $beforeExercise = Exercise::fromString("exercise1");
+        $afterExercise = Exercise::fromString("exercise3");
+        $programExercises = [
+            $beforeExercise,
+            $removedExercise,
+            $afterExercise
+        ];
+        $program = Program::create(
+            'programname',
+            ...$programExercises
+        );
+        $workout = Workout::fromProgram($program);
+        $workoutComponents = $workout->getComponents();
+        $workout->removeComponent($workoutComponents[1]); // 1 corresponding to $removedExercise in $programExercises above
+        // check that only the expected exercises remain
+        $expectedRemainingExercises = [
+            $beforeExercise,
+            $afterExercise
+        ];
+        $workoutComponents = $workout->getComponents();
+        $this->assertEquals(count($expectedRemainingExercises), count($workoutComponents));
+        for ($i=0; $i<count($expectedRemainingExercises); $i++) {
+            $this->assertEquals(
+                $expectedRemainingExercises[$i]->getName(),
+                $workoutComponents[$i]->getName()
+            );
+        }
+        // ensure removing from the workout doesn't change the program
+        $this->assertEquals($programExercises, $program->getExercises());
+    }
 }

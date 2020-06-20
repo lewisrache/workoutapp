@@ -30,6 +30,16 @@ final class Workout
     {
         $this->components[] = $this->cloneExercise($exercise);
     }
+    public function removeComponent(Component $removedComponent): void
+    {
+        foreach ($this->components as $key => $component) {
+            if ($component === $removedComponent) {
+                unset($this->components[$key]);
+            }
+        }
+        // we want keys to always be sequential starting at 0
+        $this->components = array_values($this->components);
+    }
 
     private function cloneExercises(Exercise ...$exercises): array
     {
