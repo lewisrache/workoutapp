@@ -10,7 +10,7 @@ final class ComponentTest extends TestCase
             Component::fromExercise(Exercise::fromString("componentize"))
         );
     }
-    public function testGetComponentName(): void
+    public function testGetComponentNameSameAsExerciseName(): void
     {
         $expectedName = "goesthrough";
         $exercise = Exercise::fromString($expectedName);
