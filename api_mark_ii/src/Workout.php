@@ -4,6 +4,7 @@ final class Workout
 {
     private $program;
     private $components;
+    public const DEFAULT_NAME = "quick workout";
     private function __construct($program)
     {
         $this->program = $program;
@@ -13,6 +14,10 @@ final class Workout
     {
         return new self($program);
     }
+    public static function fromExercises(Exercise ...$exercises): Workout
+    {
+        return new self(Program::create(Workout::DEFAULT_NAME, ...$exercises));
+    }
     public function getName(): string
     {
         return $this->program->getName();
@@ -21,13 +26,21 @@ final class Workout
     {
         return $this->components;
     }
+    public function addExercise(Exercise $exercise): void
+    {
+        $this->components[] = $this->cloneExercise($exercise);
+    }
 
     private function cloneExercises(Exercise ...$exercises): array
     {
         $components = [];
         foreach ($exercises as $exercise) {
-            $components[] = Component::fromExercise($exercise);
+            $components[] = $this->cloneExercise($exercise);
         }
         return $components;
+    }
+    private function cloneExercise(Exercise $exercise): Component
+    {
+        return Component::fromExercise($exercise);
     }
 }

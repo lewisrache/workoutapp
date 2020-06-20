@@ -40,4 +40,32 @@ final class WorkoutTest extends TestCase
             $this->assertEquals($programExercises[$i]->getName(), $workoutComponents[$i]->getName());
         }
     }
+
+    public function testCreateWorkoutFromExerciseList(): void
+    {
+        $exercises = [
+            Exercise::fromString('exercisename1'),
+            Exercise::fromString('exercisename2'),
+        ];
+        $this->assertInstanceOf(
+            Workout::class,
+            Workout::fromExercises(...$exercises)
+        );
+    }
+
+    public function testAddExerciseToWorkout(): void
+    {
+        $program = Program::create(
+            'programname',
+            ...[
+                Exercise::fromString('exercisename1'),
+                Exercise::fromString('exercisename2'),
+                Exercise::fromString('exercisename3'),
+            ]
+        );
+        $workout = Workout::fromProgram($program);
+        $newExercise = Exercise::fromString('newexercise');
+        $workout->addExercise($newExercise);
+        $this->assertEquals($newExercise->getName(), $workout->getComponents()[3]->getName());
+    }
 }
