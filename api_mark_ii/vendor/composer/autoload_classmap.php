@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Component' => $baseDir . '/src/Component.php',
+    'ComponentSet' => $baseDir . '/src/ComponentSet.php',
     'Exercise' => $baseDir . '/src/Exercise.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
