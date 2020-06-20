@@ -11,4 +11,8 @@ final class Workout
     {
         return new self($program);
     }
+    public function getName(): string
+    {
+        return $this->program->getName();
+    }
 }

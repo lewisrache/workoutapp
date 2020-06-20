@@ -11,4 +11,11 @@ final class WorkoutTest extends TestCase
             Workout::fromProgram($program)
         );
     }
+
+    public function testWorkoutNameSameAsProgram(): void
+    {
+        $program = Program::create('programname', ...[Exercise::fromString('exercisename')]);
+        $workout = Workout::fromProgram($program);
+        $this->assertEquals($program->getName(), $workout->getName());
+    }
 }
