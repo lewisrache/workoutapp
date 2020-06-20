@@ -21,18 +21,16 @@ final class ComponentTest extends TestCase
     public function testSetListInitializesEmpty(): void
     {
         $component = Component::fromExercise(Exercise::fromString("bogus"));
-        $this->assertEmpty($component->getSetList());        
+        $this->assertEmpty($component->getSetList());
     }
 
-    // public function testAddComponentSetAddsToSetList(): void
-    // {
-    //     $componentSet = ComponentSet::create(150, 5);
-    //     $component = Component::fromExercise(Exercise::fromString("bogus"));
-    //     // first check that
-    //     $firstSetList = $component->getSetList();
-    //     $this->assertEmpty($firstSetList);
-    //     $secondSetList = $component->addSet($componentSet);
-    //     $this->assertTrue(count($firstSetList) < count($secondSetList));
-    //     $this->assertEquals($secondSetList, $component->getSetList());
-    // }
+    public function testAddComponentSetAddsToSetList(): void
+    {
+        $componentSet = ComponentSet::create(150, 5);
+        $component = Component::fromExercise(Exercise::fromString("bogus"));
+        $component->addSet($componentSet);
+        $setList = $component->getSetList();
+        $this->assertNotEmpty($setList);
+        $this->assertEquals($componentSet, $setList[0]);
+    }
 }

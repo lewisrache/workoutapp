@@ -3,9 +3,11 @@
 final class Component
 {
     private $exercise;
+    private $sets;
     private function __construct($exercise)
     {
         $this->exercise = $exercise;
+        $this->sets = [];
     }
     public static function fromExercise(Exercise $exercise): Component
     {
@@ -14,5 +16,13 @@ final class Component
     public function getName(): string
     {
         return $this->exercise->getName();
+    }
+    public function getSetList(): array
+    {
+        return $this->sets;
+    }
+    public function addSet(ComponentSet $set): void
+    {
+        $this->sets[] = $set;
     }
 }
