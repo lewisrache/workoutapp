@@ -25,4 +25,15 @@ final class ProgramTest extends TestCase
         $actualExercises = $program->getExercises();
         $this->assertEquals($expectedExercises, $actualExercises);
     }
+
+    public function testGetSameNameBack(): void
+    {
+        $expectedName = "programname";
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $program = Program::create($expectedName, ...$exercises);
+        $this->assertEquals($expectedName, $program->getName());
+    }
 }

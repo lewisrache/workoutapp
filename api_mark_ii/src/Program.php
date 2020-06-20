@@ -17,4 +17,8 @@ final class Program
     {
         return $this->exercises;
     }
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
