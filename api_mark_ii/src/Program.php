@@ -37,4 +37,14 @@ final class Program
     {
         $this->exercises[] = $exercise;
     }
+    public function removeExercise(Exercise $removedExercise): void
+    {
+        foreach ($this->exercises as $key => $exercise) {
+            if ($exercise === $removedExercise) {
+                unset($this->exercises[$key]);
+            }
+        }
+        // we want the keys to always be sequential
+        $this->exercises = array_values($this->exercises);
+    }
 }

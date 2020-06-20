@@ -70,7 +70,7 @@ final class ProgramTest extends TestCase
             $program->spawnWorkout(),
             $program->spawnWorkout()
         ];
-        $this->assertEquals(count($expectedWorkouts), count($program->getWorkoutList()));
+        $this->assertEquals($expectedWorkouts, $program->getWorkoutList());
     }
 
     public function testAddExerciseToExistingProgram(): void
@@ -85,5 +85,21 @@ final class ProgramTest extends TestCase
         // because WE are passing this in, and WE are determining how the code is written
         // we can just do "2" because it is the third array element.
         $this->assertEquals($newExercise, $program->getExercises()[2]);
+    }
+
+    public function testRemoveExerciseFromProgram(): void
+    {
+        $removedExercise = Exercise::fromString("removed");
+        $beforeExercise = Exercise::fromString("exercise1");
+        $afterExercise = Exercise::fromString("exercise3");
+        $exercises = [
+            $beforeExercise,
+            $removedExercise,
+            $afterExercise
+        ];
+        $program = Program::create("programname", ...$exercises);
+        $program->removeExercise($removedExercise);
+        $remainingExercises = $program->getExercises();
+        $this->assertEquals([$beforeExercise,$afterExercise], $program->getExercises());
     }
 }
