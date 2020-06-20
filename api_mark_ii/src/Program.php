@@ -4,10 +4,12 @@ final class Program
 {
     private $name;
     private $exercises;
+    private $workouts;
     private function __construct(string $name, Exercise ...$exercises)
     {
         $this->name = $name;
         $this->exercises = $exercises;
+        $this->workouts = [];
     }
     public static function create(string $name, Exercise ...$exercises): Program
     {
@@ -20,5 +22,11 @@ final class Program
     public function getName(): string
     {
         return $this->name;
+    }
+    public function spawnWorkout(): Workout
+    {
+        $workout = Workout::fromProgram($this);
+        $this->workouts[] = $workout;
+        return $workout;
     }
 }

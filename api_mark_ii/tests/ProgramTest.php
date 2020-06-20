@@ -36,4 +36,17 @@ final class ProgramTest extends TestCase
         $program = Program::create($expectedName, ...$exercises);
         $this->assertEquals($expectedName, $program->getName());
     }
+
+    public function testProgramSpawnWorkout(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $program = Program::create("programname", ...$exercises);
+        $this->assertInstanceOf(
+            Workout::class,
+            $program->spawnWorkout()
+        );
+    }
 }
