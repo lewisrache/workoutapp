@@ -14,4 +14,15 @@ final class ProgramTest extends TestCase
             Program::create("programname", ...$exercises)
         );
     }
+
+    public function testGetExercisesFromProgram(): void
+    {
+        $expectedExercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $program = Program::create("programname", ...$expectedExercises);
+        $actualExercises = $program->getExercises();
+        $this->assertEquals($expectedExercises, $actualExercises);
+    }
 }

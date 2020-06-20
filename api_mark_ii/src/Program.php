@@ -13,4 +13,8 @@ final class Program
     {
         return new self($name, ...$exercises);
     }
+    public function getExercises(): array
+    {
+        return $this->exercises;
+    }
 }
