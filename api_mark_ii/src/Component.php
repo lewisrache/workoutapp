@@ -11,4 +11,8 @@ final class Component
     {
         return new self($exercise);
     }
+    public function getName(): string
+    {
+        return $this->exercise->getName();
+    }
 }

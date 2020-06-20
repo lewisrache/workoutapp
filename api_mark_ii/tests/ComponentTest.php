@@ -10,4 +10,11 @@ final class ComponentTest extends TestCase
             Component::fromExercise(Exercise::fromString("componentize"))
         );
     }
+    public function testGetComponentName(): void
+    {
+        $expectedName = "goesthrough";
+        $exercise = Exercise::fromString($expectedName);
+        $component = Component::fromExercise($exercise);
+        $this->assertEquals($exercise->getName(), $component->getName());
+    }
 }
