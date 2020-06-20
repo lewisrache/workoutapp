@@ -29,4 +29,8 @@ final class Program
         $this->workouts[] = $workout;
         return $workout;
     }
+    public function getWorkoutList(): array
+    {
+        return $this->workouts;
+    }
 }

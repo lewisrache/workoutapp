@@ -49,4 +49,13 @@ final class ProgramTest extends TestCase
             $program->spawnWorkout()
         );
     }
+    public function testGetWorkoutListNewProgram(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $program = Program::create("programname", ...$exercises);
+        $this->assertEmpty($program->getWorkoutList());
+    }
 }
