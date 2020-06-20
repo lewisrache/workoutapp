@@ -33,4 +33,8 @@ final class Program
     {
         return $this->workouts;
     }
+    public function addExercise(Exercise $exercise): void
+    {
+        $this->exercises[] = $exercise;
+    }
 }

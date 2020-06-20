@@ -58,4 +58,32 @@ final class ProgramTest extends TestCase
         $program = Program::create("programname", ...$exercises);
         $this->assertEmpty($program->getWorkoutList());
     }
+
+    public function testGetWorkoutListWithHistory(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $program = Program::create("programname", ...$exercises);
+        $expectedWorkouts = [
+            $program->spawnWorkout(),
+            $program->spawnWorkout()
+        ];
+        $this->assertEquals(count($expectedWorkouts), count($program->getWorkoutList()));
+    }
+
+    public function testAddExerciseToExistingProgram(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $program = Program::create("programname", ...$exercises);
+        $newExercise = Exercise::fromString("newexercise");
+        $program->addExercise($newExercise);
+        // because WE are passing this in, and WE are determining how the code is written
+        // we can just do "2" because it is the third array element.
+        $this->assertEquals($newExercise, $program->getExercises()[2]);
+    }
 }
